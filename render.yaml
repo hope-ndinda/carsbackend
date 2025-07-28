@@ -1,9 +1,7 @@
 services:
   - type: web
     name: carsbackend
-    runtime: java
+    runtime: docker
     plan: free
-    buildCommand: "./mvnw clean install"
-    startCommand: "java -jar target/*.jar"
     branch: main
     repo: https://github.com/hope-ndinda/carsbackend
