@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: cars-backend
+    env: java
+    buildCommand: ./mvnw clean package
+    startCommand: java -jar target/carsfinder-0.0.1-SNAPSHOT.jar
+    plan: free
+    autoDeploy: true
+    branch: main
