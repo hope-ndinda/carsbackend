@@ -1,7 +1,7 @@
 services:
   - type: web
     name: carsbackend
-    env: java
+    runtime: java
     plan: free
     buildCommand: "./mvnw clean install"
     startCommand: "java -jar target/*.jar"
