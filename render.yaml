@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: cars-backend
+    name: carsbackend
     env: java
-    buildCommand: ./mvnw clean package
-    startCommand: java -jar target/carsfinder-0.0.1-SNAPSHOT.jar
     plan: free
-    autoDeploy: true
+    buildCommand: "./mvnw clean install"
+    startCommand: "java -jar target/*.jar"
     branch: main
+    repo: https://github.com/hope-ndinda/carsbackend
