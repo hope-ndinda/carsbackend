@@ -43,7 +43,7 @@ public class Car {
     private String seller_fn;
     private String seller_ln;
     private String seller_email;
-    private int seller_phone;
+    private String seller_phone;
     private String exterior_features;
     private String interior_features;
 
@@ -162,11 +162,11 @@ public class Car {
         this.exterior_features = exterior_features;
     }
 
-    public int getSeller_phone() {
+    public String getSeller_phone() {
         return seller_phone;
     }
 
-    public void setSeller_phone(int seller_phone) {
+    public void setSeller_phone(String seller_phone) {
         this.seller_phone = seller_phone;
     }
 
