@@ -3,8 +3,12 @@ package com.carsfinder.carsfinder.controller;
 import com.carsfinder.carsfinder.model.Car;
 import com.carsfinder.carsfinder.service.CarService;
 import com.carsfinder.carsfinder.service.CloudinaryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,8 +41,15 @@ public class CarController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-    @PostMapping("/upload-photo")
-    public ResponseEntity<String> uploadPhoto(@RequestParam("file") MultipartFile file) {
+    @PostMapping(value = "/upload-photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Upload photo", description = "Uploads a photo to Cloudinary")
+    public ResponseEntity<String> uploadPhoto(
+            @org.springframework.web.bind.annotation.RequestPart("file")
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    content = @Content(mediaType = MediaType.MULTIPART_FORM_DATA_VALUE,
+                            schema = @Schema(type = "string", format = "binary"))
+            )
+            MultipartFile file) {
         try {
             String url = cloudinaryService.uploadImage(file);
             return ResponseEntity.ok(url);
